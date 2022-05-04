@@ -76,4 +76,40 @@ class Trie {
         return s;
         
     }
+   //remove function.
+   void removehelepr(TrieNode* root, string word){
+    //base case.
+    if(word.size() == 0){
+        root->isTerminal = false;
+    }
+    //small calculation.
+    int index = word[0] -'a';
+    TrieNode*child;
+    if(root->children[index] ==NULL){
+        return ;
+    }
+    else{
+        child = root->children[index];
+    }
+    removehelepr(child,word.substr(1));
+
+    // now deleteing, backstracking smaj le .
+    //jab ye delete kr dega tab return upar aaega tab dellte the data.
+    if(child->isTerminal == false){
+        for(int i =0 ; i<26; i++){
+            if(child->children[i] != NULL){
+                return;
+            }
+        }
+        // delete the node from the tree.
+        delete child;
+        //now root ke index par bhi null kr diya
+        root->children[index] = NULL;
+
+    }
+}
+
+    void remove(string word){
+      removehelepr(root,word);
+    }
 };
