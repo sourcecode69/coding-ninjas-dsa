@@ -6,7 +6,7 @@ int minhelp(int **input, int m, int n, int x, int y){
     }
     //base case 
     if(x<0 || y<0 || x>m|| y>n){
-        return 0;
+        return INT_MAX;
     }
     int a =INT_MAX;
     int b=a;
