@@ -92,6 +92,35 @@ int editDistance(string s1, string s2)
 
 // dynamic programming.
 
-
+int editDistance(string s1, string s2)
+{
+	//Write your code here
+    int m = s1.size();
+    int n = s2.size();
+    // make a 2 d array;
+    int **output = new int *[m+1];
+    for(int i =0; i<=m; i++){
+        output[i] =  new int[n+1];
+    }
+    //fill the frist row.
+    for(int j =0; j<=n; j++){
+        output[0][j] = j;
+    }
+    for(int i =0; i<= m; i++){
+        output[i][0] = i;
+    }
+    for(int i =1; i<=m; i++){
+        for(int j=1; j<=n; j++){
+            if(s1[m-i] == s2[n-j]){
+                output[i][j] = output[i-1][j-1];
+            }
+            else{
+                output[i][j] = 1+ min(output[i-1][j-1] ,  min(output[i][j-1], output[i-1][j]));
+            }
+        }
+    }
+    return output[m][n];
+    
+}
 
 
